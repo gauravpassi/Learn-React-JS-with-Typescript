@@ -1,0 +1,35 @@
+.button {
+  padding: 10px;
+  display: inline-flex;
+  color: blueviolet;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  margin-left: 5px;
+}
+.contained {
+  background-color: rgb(43, 98, 226);
+  color: white;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 5px;
+  box-shadow: 5px;
+}
+.outlined {
+  border-color: rgb(134, 43, 226);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 5px;
+}
+.text{
+  color:rgb(43, 98, 226);
+}
+.sm {
+  font-size: 12px;
+ }
+
+.md {
+  font-size: 16px;
+}
+
+.lg {
+  font-size: 18px;
+}

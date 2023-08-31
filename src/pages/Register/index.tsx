@@ -1,6 +1,11 @@
+import { useState } from "react";
 import { Button, TextView, InputView } from "../../core-components";
 
-export default function Dashboard() {
+export default function Register() {
+
+  const [name, setName] = useState<string>("User");
+
+
   return (
     <div
       style={{
@@ -47,12 +52,14 @@ export default function Dashboard() {
         <div
           style={{ width: "40%", backgroundColor: "white", flexDirection: "column", display: "flex", padding: "10px" }}
         >
-          <InputView name={"username"} type={'text'} title={"Username"} />
-          <InputView name={"email"} type={'email'}  title={"Email"} />
-          <InputView name={"password"} type={'password'}  title={"Password"} />
-          <InputView name={"confirm"} type={'password'}  title={"Confirm Password"} />
+          <InputView name={"username"} type={'text'} title={"Username"} value={name} onTextChange={(name)=>{ setName(name)}} />
+          <InputView name={"email"} type={'email'} title={"Email"} />
+          <InputView name={"password"} type={'password'} title={"Password"} />
+          <InputView name={"com-password"} type={'password'}  title={"Confirm Password"} />
           <div style={{ flexDirection: "row", display: "flex", justifyContent: "center", padding: "10px" }}>
-            <Button varient="contained" size="lg">
+            <Button varient="contained" size="lg" onPress={()=>{
+              alert(name)
+            }}>
               Register
             </Button>
             <Button varient="text" size="lg">

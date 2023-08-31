@@ -1,0 +1,19 @@
+.base {
+  padding: 10px;
+  text-align: center;
+  height: 30px;
+  color: "red";
+  margin-top: 10px;
+}
+
+.filled {
+  color: blueviolet;
+}
+
+.input-outlined {
+  color: beige;
+}
+
+.standard {
+  color: aqua;
+}

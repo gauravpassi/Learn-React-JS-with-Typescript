@@ -41,9 +41,8 @@ function App() {
       setList(newList);
     } else {
       //update wala logic
-      list[editIndex] = expense
+      list[editIndex] = expense;
       setList([...list]);
-   
     }
     setName("");
     setOption("");
