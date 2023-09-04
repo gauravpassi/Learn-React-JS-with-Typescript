@@ -7,13 +7,11 @@
 }
 
 .filled {
-  color: blueviolet;
 }
 
 .input-outlined {
-  color: beige;
 }
 
 .standard {
-  color: aqua;
+  color: rgb(7, 12, 12);
 }

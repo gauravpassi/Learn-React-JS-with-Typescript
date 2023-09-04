@@ -4,11 +4,12 @@ interface ButtonProps {
   children: string;
   size?: 'sm' | 'md' | 'lg';
   varient?: 'text' | 'contained' | 'outlined';
+
   onPress?:()=> void
 }
 
 export default function Button(props: ButtonProps) {
-  const { children, size = 'md', varient = 'text', onPress } = props;
+  const { children, size = 'md', varient = 'text', onPress  } = props;
 
   var cls = 'button'
   switch(varient){

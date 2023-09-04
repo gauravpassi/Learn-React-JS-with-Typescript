@@ -1,10 +1,63 @@
 import { useState } from "react";
 import { Button, TextView, InputView } from "../../core-components";
+import { type } from "os";
+
+type RegisterError = {
+  name?: string;
+  email?: string;
+  password?: string;
+  cnfpswd?: string;
+};
 
 export default function Register() {
+  const [name, setName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [cnfpswd, setConfPswd] = useState<string>("");
+  const [error, setError] = useState<RegisterError>({});
 
-  const [name, setName] = useState<string>("User");
+  function onRegister() {
 
+    let err = {}
+    if(name.length === 0){
+      err = { ...error, name: "should not empty" }
+    }
+
+    if(name.length > 8){
+      err = { ...error, name: "length should not exceed 8" }
+    }
+
+    const filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    if(email.length === 0 || !filter.test(email)){
+      err = { ...error, email: "enter the valid email" } 
+    }
+  
+    
+    if(password.length == 0 || password.length > 8 ){
+      err = { ...error, password: "Enter vaild password and not exceed 8 chars" } 
+    }
+
+  
+
+    if (password !== cnfpswd) {
+      err = { ...error, cnfpswd: "password not match" }
+    } 
+
+    if(Object.keys(err).length > 0){
+      setError(err)
+      setTimeout(() => {
+        setError({});
+      }, 5000);
+      return;
+    }
+
+    alert("Your are register with us.")
+
+    setName("");
+    setEmail("");
+    setConfPswd("");
+    setPassword("");
+  }
 
   return (
     <div
@@ -13,7 +66,7 @@ export default function Register() {
         flexDirection: "column",
         justifyContent: "center",
         display: "flex",
-        backgroundSize: 'cover',
+        backgroundSize: "cover",
         backgroundImage:
           'url("https://media.istockphoto.com/id/1248542684/vector/abstract-blurred-colorful-background.jpg?s=612x612&w=0&k=20&c=6aJX8oyUBsSBZFQUCJDP7KZ1y4vrf-wEH_SJsuq7B5I=")',
       }}
@@ -39,11 +92,8 @@ export default function Register() {
             flexDirection: "column",
             marginTop: "20px",
             marginBottom: "20px",
-            backgroundSize: 'cover',
-            backgroundImage:
-              'url("https://freedesignfile.com/upload/2017/06/Pretty-girl-portrait-Stock-Photo-02.jpg")',
-        
-            
+            backgroundSize: "cover",
+            backgroundImage: 'url("https://freedesignfile.com/upload/2017/06/Pretty-girl-portrait-Stock-Photo-02.jpg")',
           }}
         >
           <TextView fontSize={25}>SIGN UP</TextView>
@@ -52,14 +102,46 @@ export default function Register() {
         <div
           style={{ width: "40%", backgroundColor: "white", flexDirection: "column", display: "flex", padding: "10px" }}
         >
-          <InputView name={"username"} type={'text'} title={"Username"} value={name} onTextChange={(name)=>{ setName(name)}} />
-          <InputView name={"email"} type={'email'} title={"Email"} />
-          <InputView name={"password"} type={'password'} title={"Password"} />
-          <InputView name={"com-password"} type={'password'}  title={"Confirm Password"} />
+          <InputView
+            name={"username"}
+            type={"text"}
+            placeholder="Enter username"
+            title={"Username"}
+            value={name}
+            onTextChange={(name) => {
+              setName(name);
+            }}
+            error={error?.name}
+          />
+          <InputView
+            name={"email"}
+            type={"email"}
+            title={"Email"}
+            placeholder="Enter email"
+            value={email}
+            onTextChange={(email) => setEmail(email)}
+            error={error?.email}
+          />
+          <InputView
+            name={"password"}
+            type={"password"}
+            title={"Password"}
+            placeholder="Enter password"
+            value={password}
+            onTextChange={(password) => setPassword(password)}
+            error={error?.password}
+          />
+          <InputView
+            name={"com-password"}
+            type={"password"}
+            title={"Confirm Password"}
+            placeholder="Enter password"
+            value={cnfpswd}
+            onTextChange={(cnfpswd) => setConfPswd(cnfpswd)}
+            error={error?.cnfpswd}
+          />
           <div style={{ flexDirection: "row", display: "flex", justifyContent: "center", padding: "10px" }}>
-            <Button varient="contained" size="lg" onPress={()=>{
-              alert(name)
-            }}>
+            <Button varient="contained" size="lg" onPress={onRegister}>
               Register
             </Button>
             <Button varient="text" size="lg">

@@ -6,12 +6,13 @@ interface InputProps {
   name: string
   value?: string;
   title?: string;
+  error?: string;
   type: 'text' | 'email' | 'password' | 'number'
   onTextChange?: (text: string) => void;
 }
 
 export default function InputView(props: InputProps) {
-  const { varient = "standard", title, onTextChange } = props;
+  const { varient = "standard", title, onTextChange , error, name} = props;
 
   var cls = "base";
   switch (varient) {
@@ -31,7 +32,8 @@ export default function InputView(props: InputProps) {
   return (
     <div style={{ flexDirection: "column", display: "inline-flex", marginTop: 10 }}>
       {title && <label>{title}</label>}
-      <input className={cls} {...props} onChange={(e) => onTextChange && onTextChange(e.target.value ?? "")} />
+      <input id={name} className={cls} {...props} onChange={(e) => onTextChange && onTextChange(e.target.value ?? "")} />
+      <label style={{color:'red'}}>{error}</label>
     </div>
   );
 }
